@@ -1,0 +1,11 @@
+groups:
+- name: example
+  rules:
+  - alert: HighCPU
+    expr: cpu_usage_simulated > 80
+    for: 10s
+    labels:
+      severity: warning
+    annotations:
+      summary: "CPU too high"
+      description: "Simulated CPU usage has been above 80 for more than 10 seconds"
