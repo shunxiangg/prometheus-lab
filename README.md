@@ -72,9 +72,13 @@ In the Prometheus expression box:
 cpu_usage_simulated
 ```
 
+![Raw metric values](01_raw_metric.heic)
+
 ```promql
 avg_over_time(cpu_usage_simulated[30s])
 ```
+
+![Averaged over 30s](02_avg_30s.heic)
 
 You should see raw values vs smoothed values.
 
@@ -104,11 +108,15 @@ In `prometheus.yml`, change:
 scrape_interval: 5s
 ```
 
+![Scrape interval 1s - catches spikes](03_scrape_1s.heic)
+
 to:
 
 ```yaml
 scrape_interval: 30s
 ```
+
+![Scrape interval 30s - misses spikes](04_scrape_30s.heic)
 
 Then restart Prometheus container (stop with `Ctrl+C`, rerun `docker run ...`).
 
