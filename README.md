@@ -6,6 +6,14 @@ Architecture:
 
 `Python app (exporter) -> /metrics on :8000 -> Prometheus scrape -> query on :9090`
 
+```mermaid
+flowchart LR
+  A[Python App\napp.py\n:8000 /metrics] -->|scrape every 5s| B[Prometheus\n:9090]
+  B -->|PromQL query| C[Prometheus UI\nGraph / Table]
+  D[alert.rules.yml] -->|loaded by| B
+  B -->|evaluate rules| E[Alerts\nPENDING -> FIRING]
+```
+
 ## Prerequisites (macOS)
 
 - Python 3 (`python3`)
